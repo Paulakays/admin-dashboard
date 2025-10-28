@@ -1,0 +1,8 @@
+{
+  "AutoPreview.center": false,
+  "AutoPreview.locked": false,
+  "AutoPreview.background": "transparent",
+  "AutoPreview.serverURL": "3000",
+  "AutoPreview.port": 3000,
+  "AutoPreview.openPreviewOnStart": true
+}
