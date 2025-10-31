@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../models/users.js";
+import User from "../models/User.js";
 //Checks if the user is logged in and has the admin role
 import { protect, isAdmin } from "../middleware/auth.js";
 
@@ -8,16 +8,21 @@ const router = express.Router();
 
 //Returns a list of all users excluding their passwords
 //Throws an exception if something goes wrong
+// GET api/users/ - returns all users(admin only)
 router.get("/", protect, isAdmin, async (req, res) => {
   try {
-    const users = await User.find({}).select("-password");
+    if (req.user.role !== "admin")
+      return res.status(403).json({ message: "Not authorized as an admin" });
+    const users = await User.find().select("-password");
     res.json(users);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 });
 
 //Gets a single user by their Id
+// GET api/users/:id - returns user by ID (admin only)
 router.get("/:id", protect, isAdmin, async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select("-password");
@@ -31,6 +36,8 @@ router.get("/:id", protect, isAdmin, async (req, res) => {
   }
 });
 
+//Updates a user's information
+// PUT api/users/:id - updates user by ID (admin only)
 router.put("/:id", protect, isAdmin, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -47,8 +54,8 @@ router.put("/:id", protect, isAdmin, async (req, res) => {
       const updatedUser = await user.save();
       res.json({
         _id: updatedUser._id,
-        firstname: updatedUser.firstname,
-        lastname: updatedUser.lastname,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
         email: updatedUser.email,
         phone: updatedUser.phone,
         role: updatedUser.role,
@@ -62,6 +69,7 @@ router.put("/:id", protect, isAdmin, async (req, res) => {
 });
 
 //Finds user by Id and deletes them
+// DELETE api/users/:id - deletes user by ID (admin only)
 router.delete("/:id", protect, isAdmin, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);

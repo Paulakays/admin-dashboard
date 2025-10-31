@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import User from "../models/users.js";
+import User from "../models/User.js";
 
 const router = express.Router();
 
@@ -11,8 +11,10 @@ const generateToken = (id, role) => {
   });
 };
 
+// POST api/auth/register
+//Registers a new user
 router.post("/register", async (req, res) => {
-  const { firstName, lastName, email, phone, password } = req.body;
+  const { firstName, lastName, email, phone, password, role } = req.body;
 
   try {
     const userExists = await User.findOne({ email });
@@ -22,13 +24,13 @@ router.post("/register", async (req, res) => {
     }
 
     //Creates and saves a new user in the DB
-    const user = await User.create({
+    let user = await User.create({
       firstName,
       lastName,
       email,
       phone,
       password,
-      role: "user",
+      role: role || "user",
     });
 
     if (user) {
@@ -56,6 +58,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// POST api/auth/login
 //Login for non-admins
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -81,6 +84,8 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// POST api/auth/admin-login
+//Login for admins
 router.post("/admin-login", async (req, res) => {
   const { email, password } = req.body;
 

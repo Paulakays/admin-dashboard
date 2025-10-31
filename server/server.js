@@ -1,4 +1,4 @@
-//Enables usage of environmentvariables from .env file
+//  Enables usage of environmentvariables from .env file
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
@@ -9,15 +9,27 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 //Reads variables
+// require("dotenv").config();
+// const express = require("express");
+// const cors = require("cors");
+// const mongoose = require("mongoose");
+
 dotenv.config();
 
 //app is the server
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 //Lets the server understand JSON data sent from frontend
 app.use(express.json());
+
+// const authRoutes = require("./routes/auth");
+// const userRoutes = require("./routes/users");
+
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+
+const PORT = process.env.PORT || 5000;
 
 //Connects to MongoDB; throws an error if something goes wrong
 mongoose
@@ -25,11 +37,12 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() =>
-    app.listen(PORT, () => console.log("MongoDB connected successfully"))
-  )
+  .then(() => {
+    console.log("Connected to MongoDB");
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
   .catch((err) => console.error("MongoDB connection error:", err));
 
 //Loads the routes created for authentification
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
+// app.use("/api/auth", authRoutes);
+// app.use("/api/users", userRoutes);
