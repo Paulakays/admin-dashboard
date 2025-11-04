@@ -19,7 +19,11 @@ dotenv.config();
 //app is the server
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", //Frontend URL
+  })
+);
 //Lets the server understand JSON data sent from frontend
 app.use(express.json());
 

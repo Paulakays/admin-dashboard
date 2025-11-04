@@ -42,6 +42,7 @@ router.post("/register", async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        phone: user.phone,
         role: user.role,
         token: token,
       });
@@ -58,8 +59,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// POST api/auth/login
-//Login for non-admins
+// POST /auth/login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -69,12 +69,17 @@ router.post("/login", async (req, res) => {
     if (user && (await user.comparePassword(password))) {
       const token = generateToken(user._id, user.role);
 
+      // Wrap user in 'user' key
       res.json({
-        _id: user._id,
-        firstName: user.firstName,
-        email: user.email,
-        role: user.role,
-        token: token,
+        user: {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          phone: user.phone,
+          role: user.role,
+        },
+        token,
       });
     } else {
       res.status(401).json({ message: "Invalid email or password" });
@@ -96,18 +101,22 @@ router.post("/admin-login", async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
     if (user.role !== "admin") {
-      return res.status(403).json({ message: "Access denied.Not an admin" });
+      return res.status(403).json({ message: "Access denied. Not an admin" });
     }
 
     const token = generateToken(user._id, user.role);
 
+    // ✅ Wrap the user inside a 'user' key
     res.json({
-      _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      role: user.role,
-      token: token,
+      user: {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+      },
+      token,
     });
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });

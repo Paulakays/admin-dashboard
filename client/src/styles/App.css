@@ -1,0 +1,298 @@
+/* === Sticky Footer Layout === */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Make the main content expand to fill the available space */
+main {
+  flex: 1;
+}
+
+/* ========== Global Styles ========== */
+body {
+  margin: 0;
+  font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+/* Make sure container contents are centered and responsive */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ========== Navbar ========== */
+nav,
+.MuiAppBar-root {
+  background-color: #6610f4 !important;
+}
+
+nav .MuiButton-root,
+.MuiToolbar-root .MuiButton-root {
+  color: white !important;
+  text-transform: none;
+  font-weight: 500;
+}
+
+nav .MuiButton-root:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ========== Footer ========== */
+footer {
+  background-color: #6610f4;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+/* ========== Auth Forms (Login, Register, Admin Login) ========== */
+.auth-container {
+  max-width: 420px;
+  margin: 5rem auto;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-container h5,
+.auth-container .MuiTypography-root {
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.auth-container .MuiTextField-root {
+  margin-bottom: 1rem;
+}
+
+.auth-container .MuiButton-root {
+  margin-top: 1rem;
+  background-color: #6610f4;
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem;
+}
+
+.auth-container .MuiButton-root:hover {
+  background-color: #6610f4;
+}
+
+/* ========== Home Page (User Table) ========== */
+.user-table-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.user-table-container .MuiTypography-root {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.user-table-container .MuiTextField-root {
+  margin-bottom: 1rem;
+}
+
+.MuiTable-root {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.MuiTableHead-root {
+  background-color: #6610f4;
+}
+
+.MuiTableHead-root .MuiTableCell-root {
+  color: white;
+  font-weight: 600;
+}
+
+/* ========== Contact Page ========== */
+.contact-container {
+  max-width: 600px;
+  margin: 4rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container .MuiTypography-root {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.contact-container .MuiButton-root {
+  margin-top: 1rem;
+  background-color: #6610f4;
+  color: white;
+  font-weight: 600;
+}
+
+.contact-container .MuiButton-root:hover {
+  background-color: #6610f4;
+}
+
+/* ========== About Page ========== */
+.about-container {
+  max-width: 700px;
+  margin: 4rem auto;
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.about-container .MuiTypography-root:first-child {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* ========== Utility Classes ========== */
+.text-center {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+.mt-3 {
+  margin-top: 1.5rem;
+}
+.mt-4 {
+  margin-top: 2rem;
+}
+/* === General Auth Page Layout (Centered) === */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  padding: 20px;
+}
+
+/* Form card styling */
+.auth-box {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem 3rem;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Title styling */
+.auth-title {
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #6610f4;
+  font-size: 1.6rem;
+}
+
+/* Text field spacing */
+.auth-box .MuiTextField-root {
+  margin-bottom: 1rem;
+}
+
+/* === Button Styling === */
+
+/* Primary (contained) buttons like Login/Register */
+.auth-box .MuiButton-contained {
+  background-color: #6610f4 !important;
+  color: #fff !important;
+  font-weight: 600;
+  text-transform: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for primary buttons */
+.auth-box .MuiButton-contained:hover {
+  background-color: #520dc2 !important;
+}
+
+/* Secondary (text) buttons like "Create Account" or "Back to Login" */
+.auth-box .MuiButton-text {
+  color: #6610f4 !important;
+  font-weight: 500;
+  margin-top: 1rem;
+  text-transform: none;
+}
+.auth-box .MuiButton-text:hover {
+  background-color: rgba(102, 16, 244, 0.1) !important;
+}
+/* Centers the contact form vertically without changing width */
+.contact-wrapper {
+  min-height: 80vh; /* slightly lower, centered vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+.about-wrapper {
+  padding: 40px 20px;
+  text-align: center;
+  background: #f9f9fc; /* subtle light background */
+  min-height: 80vh;
+}
+
+.about-title {
+  font-weight: 700;
+  color: #6610f4;
+  margin-bottom: 1rem;
+}
+
+.about-description {
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.about-card {
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.about-icon {
+  font-size: 40px;
+  color: #6610f4;
+  margin-bottom: 10px;
+}
+
+.about-card-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
