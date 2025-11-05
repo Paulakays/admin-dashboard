@@ -8,11 +8,6 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
-//Reads variables
-// require("dotenv").config();
-// const express = require("express");
-// const cors = require("cors");
-// const mongoose = require("mongoose");
 
 dotenv.config();
 
@@ -27,9 +22,7 @@ app.use(
 //Lets the server understand JSON data sent from frontend
 app.use(express.json());
 
-// const authRoutes = require("./routes/auth");
-// const userRoutes = require("./routes/users");
-
+//Loads the routes created for authentification
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 
@@ -47,6 +40,4 @@ mongoose
   })
   .catch((err) => console.error("MongoDB connection error:", err));
 
-//Loads the routes created for authentification
-// app.use("/api/auth", authRoutes);
-// app.use("/api/users", userRoutes);
+

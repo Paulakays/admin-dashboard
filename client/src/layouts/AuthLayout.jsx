@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Box } from "@mui/material";
 
+// Layout for authentication pages (login, register)
 function AuthLayout({ children }) {
   return (
     <Box

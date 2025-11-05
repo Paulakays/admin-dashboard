@@ -71,16 +71,19 @@ footer {
   text-align: center;
 }
 
+/* Headings and typography */
 .auth-container h5,
 .auth-container .MuiTypography-root {
   margin-bottom: 1.5rem;
   font-weight: 600;
 }
 
+/* Form fields spacing */
 .auth-container .MuiTextField-root {
   margin-bottom: 1rem;
 }
 
+/* Buttons styling */
 .auth-container .MuiButton-root {
   margin-top: 1rem;
   background-color: #6610f4;
@@ -115,6 +118,7 @@ footer {
   border-radius: 8px;
   overflow: hidden;
 }
+
 
 .MuiTableHead-root {
   background-color: #6610f4;
@@ -233,7 +237,7 @@ footer {
   background-color: #520dc2 !important;
 }
 
-/* Secondary (text) buttons like "Create Account" or "Back to Login" */
+/* Secondary (text) buttons like "Create Account" */
 .auth-box .MuiButton-text {
   color: #6610f4 !important;
   font-weight: 500;
@@ -243,12 +247,12 @@ footer {
 .auth-box .MuiButton-text:hover {
   background-color: rgba(102, 16, 244, 0.1) !important;
 }
-/* Centers the contact form vertically without changing width */
+/* === About and Contact Page Layouts === */
 .contact-wrapper {
-  min-height: 80vh; /* slightly lower, centered vertically */
+  min-height: 80vh; 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertical centering */
+  justify-content: center; 
   align-items: center;
   padding: 20px;
   text-align: center;
@@ -256,7 +260,7 @@ footer {
 .about-wrapper {
   padding: 40px 20px;
   text-align: center;
-  background: #f9f9fc; /* subtle light background */
+  background: #f9f9fc;
   min-height: 80vh;
 }
 

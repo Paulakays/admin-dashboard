@@ -13,7 +13,7 @@ function Navbar() {
     currentUser = storedUser ? JSON.parse(storedUser) : null;
   } catch (err) {
     console.error("Error parsing user from localStorage:", err);
-    localStorage.removeItem("user"); // clear invalid data
+    localStorage.removeItem("user"); 
   }
 
   const isAdmin = currentUser?.role === "admin";

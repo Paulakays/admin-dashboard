@@ -32,9 +32,11 @@ function Home() {
     role: "",
   });
 
+  // Check if current user is admin
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const isAdmin = currentUser?.role === "admin";
 
+  // Fetch users from API
   const fetchUsers = async () => {
     try {
       const { data } = await api.get("/users");
@@ -48,6 +50,7 @@ function Home() {
     fetchUsers();
   }, []);
 
+  // Handle opening add/edit dialog
   const handleOpenAdd = () => {
     setEditingUser(null);
     setForm({ firstName: "", lastName: "", email: "", phone: "", role: "" });
@@ -60,9 +63,11 @@ function Home() {
     setOpenDialog(true);
   };
 
+  // Handle form field changes
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
+  // Handle submitting add/edit form
   const handleSubmit = async () => {
     try {
       if (editingUser) {
@@ -106,6 +111,7 @@ function Home() {
         fullWidth
       />
 
+      {/* If admin, show Add User button */}
       {isAdmin && (
         <Button
           variant="contained"
@@ -158,9 +164,9 @@ function Home() {
                         borderColor: "#6610f4",
                         color: "#6610f4",
                         "&:hover": {
-                          borderColor: "#520dc2", // match login hover
-                          color: "#520dc2", // match login hover
-                          backgroundColor: "rgba(82,13,194,0.08)", // subtle hover bg
+                          borderColor: "#520dc2", 
+                          color: "#520dc2", 
+                          backgroundColor: "rgba(82,13,194,0.08)", 
                         },
                       }}
                       onClick={() => handleOpenEdit(user)}

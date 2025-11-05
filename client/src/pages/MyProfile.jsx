@@ -25,6 +25,7 @@ function MyProfile() {
   });
   const [image, setImage] = useState(null);
 
+  // Load user data from local storage on component mount
   useEffect(() => {
     try {
       const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -49,9 +50,11 @@ function MyProfile() {
     }
   };
 
+  // Handle form field changes
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
+  // Handle saving updated profile
   const handleSave = async () => {
     try {
       const token = localStorage.getItem("token"); // get the stored JWT token

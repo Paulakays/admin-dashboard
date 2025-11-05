@@ -12,21 +12,22 @@ function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const { data } = await api.post("/auth/admin-login", form);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await api.post("/auth/admin-login", form);
 
-    // ✅ store token and user
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("user", JSON.stringify(data.user));
+      // store token and user
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-    navigate("/");
-  } catch (err) {
-    setError(err.response?.data?.message || "Login failed. Please try again.");
-  }
-};
-
+      navigate("/");
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Login failed. Please try again."
+      );
+    }
+  };
 
   return (
     <div style={{ maxWidth: 400, margin: "100px auto", textAlign: "center" }}>
@@ -43,7 +44,11 @@ const handleSubmit = async (e) => {
         <Button
           type="submit"
           variant="contained"
-          sx={{ mt: 2, backgroundColor: "#6610f4" }}
+          sx={{
+            mt: 2,
+            backgroundColor: "#6610f4",
+            "&:hover": { backgroundColor: "#520dc2" },
+          }}
         >
           Login
         </Button>

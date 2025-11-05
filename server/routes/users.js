@@ -37,7 +37,6 @@ router.get("/:id", protect, isAdmin, async (req, res) => {
 });
 
 // PUT api/users/profile - update own profile (user or admin)
-
 // Update own profile
 router.put("/profile", protect, async (req, res) => {
   try {
@@ -82,7 +81,7 @@ router.put("/:id", protect, isAdmin, async (req, res) => {
       user.phone = req.body.phone || user.phone;
       user.role = req.body.role || user.role;
 
-      //The newer version is saved in Mongo DB
+      //Saves the updated user to the database
       const updatedUser = await user.save();
       res.json({
         _id: updatedUser._id,

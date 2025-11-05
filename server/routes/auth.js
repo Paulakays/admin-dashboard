@@ -59,7 +59,8 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// POST /auth/login
+// POST api/auth/login
+//Logs in a user
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -69,7 +70,7 @@ router.post("/login", async (req, res) => {
     if (user && (await user.comparePassword(password))) {
       const token = generateToken(user._id, user.role);
 
-      // Wrap user in 'user' key
+      //data to be sent to frontend upon successful login
       res.json({
         user: {
           _id: user._id,
@@ -106,7 +107,6 @@ router.post("/admin-login", async (req, res) => {
 
     const token = generateToken(user._id, user.role);
 
-    // ✅ Wrap the user inside a 'user' key
     res.json({
       user: {
         _id: user._id,

@@ -7,8 +7,8 @@ function Contact() {
       <Typography variant="h5" gutterBottom>
         Contact Us
       </Typography>
-      
-      <Box component="form" sx={{ mt: 2 , maxWidth: 800, margin: "0 auto"}}>
+
+      <Box component="form" sx={{ mt: 2, maxWidth: 800, margin: "0 auto" }}>
         <TextField label="Your Name" fullWidth margin="normal" />
         <TextField label="Your Email" fullWidth margin="normal" />
         <TextField

@@ -14,6 +14,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 function App() {
+  //Get user data from local storage
   const user = JSON.parse(localStorage.getItem("user"));
 
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Protected layout */}
+        {/* Protected layout 
+         Render MainLayout only if user is logged in*/}
         {user && (
           <Route path="/" element={<MainLayout />}>
             {/* Admin routes */}
@@ -37,6 +39,7 @@ function App() {
             )}
 
             {/* User routes */}
+
             {user?.role === "user" && (
               <>
                 <Route index element={<Navigate to="/my-profile" replace />} />
