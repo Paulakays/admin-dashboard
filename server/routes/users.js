@@ -36,6 +36,42 @@ router.get("/:id", protect, isAdmin, async (req, res) => {
   }
 });
 
+//Creates a new user
+// POST api/users/ - creates a new user (admin only)
+router.post("/", protect, isAdmin, async (req, res) => {
+  try {
+    const { firstName, lastName, email, phone, role, password } = req.body;
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      phone,
+      role,
+      password: password || "123456", // temporary default password if not provided
+    });
+
+    await newUser.save();
+    res.status(201).json({
+      message: "User created successfully",
+      user: {
+        _id: newUser._id,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        email: newUser.email,
+        phone: newUser.phone,
+        role: newUser.role,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+});
+
 // PUT api/users/profile - update own profile (user or admin)
 // Update own profile
 router.put("/profile", protect, async (req, res) => {

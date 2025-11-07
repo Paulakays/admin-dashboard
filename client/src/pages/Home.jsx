@@ -14,6 +14,8 @@ import {
   DialogContent,
   DialogActions,
   TablePagination,
+  Alert,
+  Snackbar,
 } from "@mui/material";
 import api from "../api";
 
@@ -31,6 +33,8 @@ function Home() {
     phone: "",
     role: "",
   });
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   // Check if current user is admin
   const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -69,16 +73,31 @@ function Home() {
 
   // Handle submitting add/edit form
   const handleSubmit = async () => {
+    if (!form.firstName || !form.lastName || !form.email || !form.role) {
+      setAlertMessage("Please fill in all required fields.");
+      setAlertOpen(true);
+      return;
+    }
     try {
       if (editingUser) {
         await api.put(`/users/${editingUser._id}`, form);
+        setAlertMessage("User updated successfully");
       } else {
         await api.post("/users", form);
+        setAlertMessage("User added successfully");
       }
+      setAlertOpen(true);
       fetchUsers();
       setOpenDialog(false);
     } catch (err) {
       console.error(err);
+      const backendMessage = err.response?.data?.message;
+      if (backendMessage) {
+        setAlertMessage(backendMessage);
+      } else {
+        setAlertMessage("Something went wrong. Please try again.");
+      }
+      setAlertOpen(true);
     }
   };
 
@@ -164,9 +183,9 @@ function Home() {
                         borderColor: "#6610f4",
                         color: "#6610f4",
                         "&:hover": {
-                          borderColor: "#520dc2", 
-                          color: "#520dc2", 
-                          backgroundColor: "rgba(82,13,194,0.08)", 
+                          borderColor: "#520dc2",
+                          color: "#520dc2",
+                          backgroundColor: "rgba(82,13,194,0.08)",
                         },
                       }}
                       onClick={() => handleOpenEdit(user)}
@@ -279,6 +298,27 @@ function Home() {
           </DialogActions>
         </Dialog>
       )}
+      <Snackbar
+        open={alertOpen}
+        autoHideDuration={6000}
+        onClose={() => setAlertOpen(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setAlertOpen(false)}
+          severity={alertMessage.includes("successfully") ? "success" : "error"}
+          sx={{
+            width: "100%",
+            backgroundColor: alertMessage.includes("successfully")
+              ? "#4caf50"
+              : "#f44336",
+            color: "#fff",
+            "& .MuiAlert-icon": { color: "#fff" },
+          }}
+        >
+          {alertMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

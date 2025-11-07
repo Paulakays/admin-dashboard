@@ -1,4 +1,3 @@
-
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
@@ -13,7 +12,7 @@ function Navbar() {
     currentUser = storedUser ? JSON.parse(storedUser) : null;
   } catch (err) {
     console.error("Error parsing user from localStorage:", err);
-    localStorage.removeItem("user"); 
+    localStorage.removeItem("user");
   }
 
   const isAdmin = currentUser?.role === "admin";
@@ -28,7 +27,7 @@ function Navbar() {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-         Admin Dashboard
+          Admin Dashboard
         </Typography>
 
         {currentUser && (

@@ -12,8 +12,10 @@ function About() {
         About This Dashboard
       </Typography>
       <Typography variant="body1" className="about-description" gutterBottom>
-        Welcome to the Admin Dashboard! This application is built with <strong>React</strong> for the frontend and <strong>Node.js</strong> for the backend.
-        Manage users, view statistics, and control the system all in one place. Version 1.0.0
+        Welcome to the Admin Dashboard! This application is built with{" "}
+        <strong>React</strong> for the frontend and <strong>Node.js</strong> for
+        the backend. Manage users, view statistics, and control the system all
+        in one place. Version 1.0.0
       </Typography>
 
       <Grid container spacing={3} sx={{ mt: 3 }}>
@@ -24,7 +26,8 @@ function About() {
               User Management
             </Typography>
             <Typography variant="body2">
-              Add, edit, and remove users easily. Search, filter, and paginate the user list efficiently.
+              Add, edit, and remove users easily. Search, filter, and paginate
+              the user list efficiently.
             </Typography>
           </Paper>
         </Grid>
@@ -36,7 +39,8 @@ function About() {
               Dashboard Insights
             </Typography>
             <Typography variant="body2">
-              Get quick insights and overviews of system activity, user roles, and usage metrics.
+              Get quick insights and overviews of system activity, user roles,
+              and usage metrics.
             </Typography>
           </Paper>
         </Grid>
@@ -48,7 +52,8 @@ function About() {
               Customizable
             </Typography>
             <Typography variant="body2">
-              Easily extend the dashboard to include new features, modules, and integrations for your business.
+              Easily extend the dashboard to include new features, modules, and
+              integrations for your business.
             </Typography>
           </Paper>
         </Grid>
